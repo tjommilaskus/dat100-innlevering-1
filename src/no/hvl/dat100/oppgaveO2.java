@@ -9,32 +9,36 @@ public class oppgaveO2 {
 		System.out.print("Skriv inn inntekt: ");
 		double inntekt = scanner.nextInt();
 		
+		double totalTrinnskatt = beregnTrinnskatt(inntekt);
 		
-		
-		if(inntekt >= 208051 && inntekt <= 292850) {
-			double trinn1 = ((inntekt / 100) * 1.7);
-			System.out.println("Trinnskatt: " + trinn1 + "Kr");
-		}
-		if(inntekt >= 292850 && inntekt <= 670000) {
-			double trinn2 = ((inntekt / 100) * 4.0);
-			System.out.println("Trinnskatt: " + trinn2 + "Kr");
-		}
-		if(inntekt >= 670001 && inntekt <= 937900) {
-			double trinn3 = ((inntekt / 100) * 13.6);
-			System.out.println("Trinnskatt: " + trinn3 + "Kr");
-		}
-		if(inntekt >= 937901 && inntekt <= 1350000) {
-			double trinn4 = ((inntekt / 100) * 16.6);
-			System.out.println("Trinnskatt: " + trinn4 + "Kr");
-		}
-		if(inntekt >= 135001) {
-			double trinn5 = ((inntekt / 100) * 17.6);
-			System.out.println("Trinnskatt: " + trinn5 + "Kr");
-		}
-		else if(inntekt <= 20850){
-			System.out.println("Ingen trinnskatt!");
-		}
+		 if (totalTrinnskatt > 0) {
+			 System.out.printf("Total trinnskatt: %.2f Kr%n", totalTrinnskatt);
+	      } else {
+	            System.out.println("Ingen trinnskatt!");
+	     }
 
+	        scanner.close();
+	    }
+	public static double beregnTrinnskatt(double inntekt) {
+		double trinnskatt = 0;
+		
+		if (inntekt > 1350000) {
+			trinnskatt += (inntekt - 1350000) * 0.176;
+			inntekt = 1350000;
+		}
+		if (inntekt > 937900) {
+			trinnskatt += (inntekt - 937900) * 0.166;
+			inntekt = 937900;
+		}
+		if (inntekt > 670000) {
+			trinnskatt += (inntekt - 670000) * 0.136;
+			inntekt = 670000;
+		}
+		if (inntekt > 292850) {
+			trinnskatt += (inntekt - 292850) * 0.017;
+			inntekt = 292850;
+		}
+		return trinnskatt;
 	}
 
 }
